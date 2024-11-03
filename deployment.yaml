@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emotional_chatbot
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: emotional_chatbot  # Updated label to match the selector
+    spec:
+      containers:
+        - name: emotional_chatbot
+          image: megatronxcoder/emotional_chatbot:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: HUME_API_KEY
+              value: "RxalKRbS6GxrZnnH6hwQSk8ECFvZjLYfuAP4TrFHUWMYZ0uV"
+            - name: HUME_SECRET_KEY
+              value: "w0l0BMLq0oiGQ8W1YAIv6JO3CgEf8HFOA3kiow0AA645X16m6jPoGEgYiJdkCLt0"
+  selector:
+    matchLabels:
+      app: emotional_chatbot
